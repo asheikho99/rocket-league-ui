@@ -4,8 +4,8 @@
     gameTime,
     hasTarget,
     isFeedEventStarted,
-    isGameCreated,
-    isGameInitialized,
+    isMatchCreated,
+    isMatchInitialized,
     isOT,
     target,
   } from '../../stores/game'
@@ -17,9 +17,9 @@
   } from '../../stores/replay'
 </script>
 
-<div class="absolute z-50 bg-black bg-opacity-75 text-white flex flex-col h-full w-full">
-  <p>gameCreated: {$isGameCreated}</p>
-  <p>gameInitialized: {$isGameInitialized}</p>
+<div class="absolute z-50 bg-black bg-opacity-75 text-white flex flex-col h-full w-full text-3xl">
+  <p>gameCreated: {$isMatchCreated}</p>
+  <p>gameInitialized: {$isMatchInitialized}</p>
   <p>gameTime: {$gameTime}</p>
   <p>isOT: {$isOT}</p>
   <p>isReplay: {$isReplay}</p>
