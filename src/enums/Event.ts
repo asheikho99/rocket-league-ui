@@ -1,0 +1,20 @@
+export const enum Event {
+    BallHit = "game:ball_hit",
+    GoalScored = "game:goal_scored",
+    Initialized = "game:initialized",
+    MatchCreated = "game:match_created",
+    MatchDestroyed = "game:match_destroyed",
+    MatchEnded = "game:match_ended",
+    PodiumStart = "game:podium_start",
+    PostCountdownBegin = "game:post_countdown_begin",
+    PreCountdownBegin = "game:pre_countdown_begin",
+    ReplayStart = "game:replay_start",
+    ReplayWillEnd = "game:replay_will_end",
+    ReplayEnd = "game:replay_end",
+    StatFeedEvent = "game:statfeed_event",
+    UpdateState = "game:update_state",
+    Version = "sos:version",
+    ClockUpdatedSeconds = "game:clock_updated_seconds",
+    ClockStopped = "game:clock_stopped",
+    RoundedStartedGo = 'game:round_started_go'
+}
