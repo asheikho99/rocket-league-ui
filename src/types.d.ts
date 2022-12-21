@@ -11,11 +11,12 @@ export type PayloadData = {
     players: Player[]
 }
 
-export type StatFeed = {
-    event_name: string
-    main_target: Target
-    match_guid: string
-    secondary_target: Target
+export type FeedEvent = {
+    eventName: string
+    mainTarget: Target
+    secondaryTarget: Target
+    matchGuid: string
+    type: string
 }
 
 export type BallHit = {
@@ -25,20 +26,20 @@ export type BallHit = {
     location: Location
     speed: number
     team: number
-    post_hit_speed: number
-    pre_hit_speed: number
+    postHitSpeed: number
+    preHitSpeed: number
 }
 
 export type GoalScored = {
     scorer: Scorer
     assister: Assister
-    ball_last_touch: {
+    ballLastTouch: {
         player: string
         speed: number
     }
-    goalspeed: number
-    goaltime: number
-    impact_location: ImpactLocation
+    goalSpeed: number
+    goalTime: number
+    impactLocation: ImpactLocation
 }
 
 export type Target = {
@@ -79,8 +80,8 @@ export type ImpactLocation = {
 }
 
 export type Team = {
-    color_primary: string
-    color_seconday: string
+    colorPrimary: string
+    colorSecondary: string
     name: string
     score: number
 }
@@ -95,8 +96,12 @@ export type Player = {
     hasCar: boolean
     id: string
     isDead: boolean
+    isPowersliding: boolean
     isSonic: boolean
+    location: PlayerLocation
     name: string
+    onGround: boolean
+    onWall: boolean
     primaryID: string
     saves: number
     score: number
@@ -105,6 +110,15 @@ export type Player = {
     speed: number
     team: number
     touches: number
+}
+
+export type PlayerLocation = {
+    X: number
+    Y: number
+    Z: number
+    pitch: number
+    roll: number
+    yaw: number
 }
 
 export type Scorer = {
@@ -116,8 +130,4 @@ export type Scorer = {
 export type Assister = {
     id: string
     name: string
-}
-
-export type MatchGUID = {
-    match_guid: string
 }

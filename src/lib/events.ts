@@ -1,47 +1,58 @@
-import type { Payload, PayloadData } from "../types"
+import type { FeedEvent, Payload, PayloadData } from '../types'
 import { Event } from '../enums/Event'
-import { onReplay } from "../events/replay"
-import { isGameCreated, isGameInitialized, gameTime, isOT, isPodiumStart, isMatchDestroyed, isMatchEnded, isFeedEventStarted, feedEvent } from "../stores/game"
+import { onReplay } from '../events/onReplay'
+import { onTeams } from '../events/onTeams'
+import { onFeedEvent } from '../events/onFeedEvent'
+import { onGoalScored } from '../events/onGoalScored'
+import { onMatchDestroyed } from '../events/onMatchDestoryed'
+import { onMatchEnded } from '../events/onMatchEnded'
+import { onPodiumStart } from '../events/onPodiumStart'
+import { onUpdateState } from '../events/onUpdateState'
+import { onMatchInitialzed } from '../events/onMatchInitialized'
+import { onMatchCreated } from '../events/onMatchCreated'
 
 export const EventProcessor = (messageEvent: Payload) => {
   const event: string = messageEvent?.event
-  const data: PayloadData = messageEvent?.data
+  const data: PayloadData | FeedEvent = messageEvent?.data
 
   switch (event) {
-    case Event.MatchCreated:
-      isGameCreated.set(true)
+    case Event.MATCH_CREATED:
+      onMatchCreated()
       break
 
-    case Event.Initialized:
-      isGameInitialized.set(true)
+    case Event.MATCH_INITIALIZED:
+      onMatchInitialzed()
       break
 
-    case Event.UpdateState:
-      gameTime.set(data?.game?.time_seconds)
-      isOT.set(data?.game.isOT)
+    case Event.UPDATE_STATE:
+      onUpdateState(data?.game)
+      onTeams(data?.game?.teams)
       break
 
-    case Event.StatFeedEvent:
-      console.log({ event, data })
-      isFeedEventStarted.set(true)
-      feedEvent.set(JSON.stringify(data))
+    case Event.STATFEED_EVENT:
+      onFeedEvent(data as unknown as FeedEvent)
       break
 
-    case Event.ReplayStart:
-    case Event.ReplayWillEnd:
-    case Event.ReplayEnd:
+    case Event.GOAL_SCORED:
+      onGoalScored()
+      break
+
+    case Event.REPLAY_START:
+    case Event.REPLAY_WILL_END:
+    case Event.REPLAY_END:
       onReplay(event)
       break
 
-    case Event.PodiumStart:
-      isPodiumStart.set(true)
-
-    case Event.MatchEnded:
-      isMatchEnded.set(true)
+    case Event.PODIUM_START:
+      onPodiumStart()
       break
 
-    case Event.MatchDestroyed:
-      isMatchDestroyed.set(true)
+    case Event.MATCH_DESTROYED:
+      onMatchEnded()
+      break
+
+    case Event.MATCH_DESTROYED:
+      onMatchDestroyed()
       break
 
     default:
