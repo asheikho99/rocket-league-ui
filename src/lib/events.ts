@@ -1,7 +1,6 @@
 import type { FeedEvent, Payload, UpdateState } from '../types'
-import { Event } from '../enums/Event'
+import { Game } from '../enums/Game'
 import { onReplay } from '../events/onReplay'
-import { onTeams } from '../events/onTeams'
 import { onFeedEvent } from '../events/onFeedEvent'
 import { onGoalScored } from '../events/onGoalScored'
 import { onMatchDestroyed } from '../events/onMatchDestoryed'
@@ -13,49 +12,50 @@ import { onMatchCreated } from '../events/onMatchCreated'
 import { onSosVersion } from '../events/onSosVersion'
 
 export const EventProcessor = (messageEvent: Payload) => {
+
   const event: string = messageEvent?.event
   const data: UpdateState | FeedEvent | string = messageEvent?.data
+
   switch (event) {
-    case Event.VERSION:
+    case Game.VERSION:
       onSosVersion(data as string)
       break
 
-    case Event.MATCH_CREATED:
+    case Game.MATCH_CREATED:
       onMatchCreated(event)
       break
 
-    case Event.MATCH_INITIALIZED:
+    case Game.MATCH_INITIALIZED:
       onMatchInitialzed(event)
       break
 
-    case Event.UPDATE_STATE:
-      onUpdateState((data as UpdateState)?.game)
-      onTeams((data as UpdateState)?.game?.teams)
+    case Game.UPDATE_STATE:
+      onUpdateState((data as UpdateState))
       break
 
-    case Event.STATFEED_EVENT:
+    case Game.STATFEED_EVENT:
       onFeedEvent((data as FeedEvent))
       break
 
-    case Event.GOAL_SCORED:
+    case Game.GOAL_SCORED:
       onGoalScored(event)
       break
 
-    case Event.REPLAY_START:
-    case Event.REPLAY_WILL_END:
-    case Event.REPLAY_END:
+    case Game.REPLAY_START:
+    case Game.REPLAY_WILL_END:
+    case Game.REPLAY_END:
       onReplay(event)
       break
 
-    case Event.PODIUM_START:
+    case Game.PODIUM_START:
       onPodiumStart(event)
       break
 
-    case Event.MATCH_ENDED:
+    case Game.MATCH_ENDED:
       onMatchEnded(event)
       break
 
-    case Event.MATCH_DESTROYED:
+    case Game.MATCH_DESTROYED:
       onMatchDestroyed(event)
       break
 

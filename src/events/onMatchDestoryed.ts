@@ -1,7 +1,7 @@
 import { isMatchDestroyed } from "../stores/game"
-import type { Event } from '../enums/Event'
+import type { Game } from '../enums/Game'
 
-export const onMatchDestroyed = (event: Event.MATCH_DESTROYED) => {
+export const onMatchDestroyed = (event: Game.MATCH_DESTROYED) => {
     if (!event) return
     isMatchDestroyed.set(true)
 }

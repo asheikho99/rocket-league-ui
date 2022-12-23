@@ -1,7 +1,7 @@
 import { isMatchCreated } from "../stores/game"
-import type { Event } from '../enums/Event'
+import type { Game } from '../enums/Game'
 
-export const onMatchCreated = (event: Event.MATCH_CREATED) => {
+export const onMatchCreated = (event: Game.MATCH_CREATED) => {
     if (!event) return
     isMatchCreated.set(true)
 }

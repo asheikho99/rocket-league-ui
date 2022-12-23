@@ -1,7 +1,7 @@
 import { isMatchEnded } from "../stores/game"
-import type { Event } from '../enums/Event'
+import type { Game } from '../enums/Game'
 
-export const onMatchEnded = (event: Event.MATCH_ENDED) => {
+export const onMatchEnded = (event: Game.MATCH_ENDED) => {
   if (!event) return
   isMatchEnded.set(true)
 }

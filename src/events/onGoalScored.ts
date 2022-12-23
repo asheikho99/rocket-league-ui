@@ -1,7 +1,7 @@
 import { isGoalScored } from "../stores/game"
-import type { Event } from '../enums/Event'
+import type { Game } from '../enums/Game'
 
-export const onGoalScored = (event: Event.GOAL_SCORED) => {
+export const onGoalScored = (event: Game.GOAL_SCORED) => {
     if (!event) return
     isGoalScored.set(true)
 }

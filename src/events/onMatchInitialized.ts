@@ -1,7 +1,7 @@
 import { isMatchInitialized } from "../stores/game"
-import type { Event } from '../enums/Event'
+import type { Game } from '../enums/Game'
 
-export const onMatchInitialzed = (event: Event.MATCH_INITIALIZED) => {
+export const onMatchInitialzed = (event: Game.MATCH_INITIALIZED) => {
     if (!event) return
     isMatchInitialized.set(true)
 }

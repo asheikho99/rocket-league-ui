@@ -1,18 +1,11 @@
 import { writable } from "svelte/store";
-import type { Team } from "../types";
+import type { Player, Team } from "../types";
+
+export type RocketLeagueTeam = {
+    team: Team
+    players: Player[]
+}
 
 export const teams = writable<Team[]>([])
-
-export const homeTeam = writable<Team>({
-    colorPrimary: "",
-    colorSecondary: "",
-    name: "",
-    score: 0
-})
-
-export const awayTeam = writable<Team>({
-    colorPrimary: "",
-    colorSecondary: "",
-    name: "",
-    score: 0
-})
+export const homeTeam = writable<RocketLeagueTeam>()
+export const awayTeam = writable<RocketLeagueTeam>()

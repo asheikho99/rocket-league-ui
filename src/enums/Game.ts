@@ -1,4 +1,4 @@
-export const enum Event {
+export const enum Game {
     BALL_HIT = "game:ball_hit",
     GOAL_SCORED = "game:goal_scored",
     MATCH_INITIALIZED = "game:initialized",
@@ -16,5 +16,5 @@ export const enum Event {
     VERSION = "sos:version",
     CLOCK_UPDATED_SECONDS = "game:clock_updated_seconds",
     CLOCK_STOPPED = "game:clock_stopped",
-    ROUND_STARTED_GO = 'game:round_started_go'
+    ROUND_STARTED_GO = 'game:round_started_go',
 }
