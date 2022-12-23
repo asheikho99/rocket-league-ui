@@ -17,5 +17,5 @@ export const enum Game {
     CLOCK_STARTED = "game:clock_started",
     CLOCK_UPDATED_SECONDS = "game:clock_updated_seconds",
     CLOCK_STOPPED = "game:clock_stopped",
-    ROUND_STARTED_GO = 'game:round_started_go',
+    ROUND_STARTED_GO = "game:round_started_go",
 }

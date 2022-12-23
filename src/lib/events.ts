@@ -11,6 +11,12 @@ import { onMatchInitialzed } from '../events/onMatchInitialized'
 import { onMatchCreated } from '../events/onMatchCreated'
 import { onSosVersion } from '../events/onSosVersion'
 import { onBallHit } from '../events/onBallHit'
+import { onPreCoundownBegin } from '../events/onPreCountdownBegin'
+import { onPostCountdownBegin } from '../events/onPostCountdownBegin'
+import { onRoundStartedGo } from '../events/onRoundStartedGo'
+import { onClockStarted } from '../events/onClockStarted'
+import { onClockStopped } from '../events/onClockStopped'
+import { onClockUpdatedSeconds } from '../events/onClockUpdatedSeconds'
 
 export const EventProcessor = (messageEvent: Payload) => {
 
@@ -28,6 +34,30 @@ export const EventProcessor = (messageEvent: Payload) => {
 
     case Game.MATCH_INITIALIZED:
       onMatchInitialzed(event)
+      break
+
+    case Game.PRE_COUNTDOWN_BEGIN:
+      onPreCoundownBegin()
+      break
+
+    case Game.POST_COUNTDOWN_BEGIN:
+      onPostCountdownBegin()
+      break
+
+    case Game.ROUND_STARTED_GO:
+      onRoundStartedGo()
+      break
+
+    case Game.CLOCK_STARTED:
+      onClockStarted()
+      break
+
+    case Game.CLOCK_STOPPED:
+      onClockStopped()
+      break
+
+    case Game.CLOCK_UPDATED_SECONDS:
+      onClockUpdatedSeconds()
       break
 
     case Game.UPDATE_STATE:
@@ -65,6 +95,7 @@ export const EventProcessor = (messageEvent: Payload) => {
       break
 
     default:
-    return
+      console.log(event)
   }
 }
+
