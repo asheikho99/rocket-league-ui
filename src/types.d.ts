@@ -1,9 +1,9 @@
 export type Payload = {
     data: PayloadData
-    event: Events
+    event: string
 }
 
-export type PayloadData = {
+export type UpdateState = {
     event: string
     game: Game
     hasGame: boolean

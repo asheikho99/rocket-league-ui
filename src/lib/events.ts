@@ -1,4 +1,4 @@
-import type { FeedEvent, Payload, PayloadData } from '../types'
+import type { FeedEvent, Payload, UpdateState } from '../types'
 import { Event } from '../enums/Event'
 import { onReplay } from '../events/onReplay'
 import { onTeams } from '../events/onTeams'
@@ -13,7 +13,7 @@ import { onMatchCreated } from '../events/onMatchCreated'
 
 export const EventProcessor = (messageEvent: Payload) => {
   const event: string = messageEvent?.event
-  const data: PayloadData | FeedEvent = messageEvent?.data
+  const data: UpdateState | FeedEvent = messageEvent?.data
 
   switch (event) {
     case Event.MATCH_CREATED:
@@ -25,12 +25,12 @@ export const EventProcessor = (messageEvent: Payload) => {
       break
 
     case Event.UPDATE_STATE:
-      onUpdateState(data?.game)
-      onTeams(data?.game?.teams)
+      onUpdateState((data as UpdateState)?.game)
+      onTeams((data as UpdateState)?.game?.teams)
       break
 
     case Event.STATFEED_EVENT:
-      onFeedEvent(data as unknown as FeedEvent)
+      onFeedEvent((data as FeedEvent))
       break
 
     case Event.GOAL_SCORED:
