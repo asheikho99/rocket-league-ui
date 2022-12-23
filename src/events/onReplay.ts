@@ -2,8 +2,8 @@ import { Event } from '../enums/Event'
 import { replayStatus, isReplay } from '../stores/replay'
 
 export const onReplay = (event: Event.REPLAY_START | Event.REPLAY_WILL_END | Event.REPLAY_END) => {
-    
-    if(!event) return
+
+    if (!event) return
     replayStatus.set(event)
 
     switch (event) {

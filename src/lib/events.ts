@@ -17,11 +17,11 @@ export const EventProcessor = (messageEvent: Payload) => {
 
   switch (event) {
     case Event.MATCH_CREATED:
-      onMatchCreated()
+      onMatchCreated(event)
       break
 
     case Event.MATCH_INITIALIZED:
-      onMatchInitialzed()
+      onMatchInitialzed(event)
       break
 
     case Event.UPDATE_STATE:
@@ -34,7 +34,7 @@ export const EventProcessor = (messageEvent: Payload) => {
       break
 
     case Event.GOAL_SCORED:
-      onGoalScored()
+      onGoalScored(event)
       break
 
     case Event.REPLAY_START:
@@ -44,15 +44,15 @@ export const EventProcessor = (messageEvent: Payload) => {
       break
 
     case Event.PODIUM_START:
-      onPodiumStart()
+      onPodiumStart(event)
+      break
+
+    case Event.MATCH_ENDED:
+      onMatchEnded(event)
       break
 
     case Event.MATCH_DESTROYED:
-      onMatchEnded()
-      break
-
-    case Event.MATCH_DESTROYED:
-      onMatchDestroyed()
+      onMatchDestroyed(event)
       break
 
     default:
