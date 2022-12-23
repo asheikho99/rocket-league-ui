@@ -1,4 +1,4 @@
-import type { FeedEvent, Payload, UpdateState } from '../types'
+import type { BallHit, FeedEvent, Payload, UpdateState } from '../types'
 import { Game } from '../enums/Game'
 import { onReplay } from '../events/onReplay'
 import { onFeedEvent } from '../events/onFeedEvent'
@@ -10,11 +10,12 @@ import { onUpdateState } from '../events/onUpdateState'
 import { onMatchInitialzed } from '../events/onMatchInitialized'
 import { onMatchCreated } from '../events/onMatchCreated'
 import { onSosVersion } from '../events/onSosVersion'
+import { onBallHit } from '../events/onBallHit'
 
 export const EventProcessor = (messageEvent: Payload) => {
 
   const event: string = messageEvent?.event
-  const data: UpdateState | FeedEvent | string = messageEvent?.data
+  const data: UpdateState | FeedEvent | BallHit | string = messageEvent?.data
 
   switch (event) {
     case Game.VERSION:
@@ -35,6 +36,10 @@ export const EventProcessor = (messageEvent: Payload) => {
 
     case Game.STATFEED_EVENT:
       onFeedEvent((data as FeedEvent))
+      break
+
+    case Game.BALL_HIT:
+      onBallHit(data as BallHit)
       break
 
     case Game.GOAL_SCORED:
@@ -60,6 +65,6 @@ export const EventProcessor = (messageEvent: Payload) => {
       break
 
     default:
-      return
+    return
   }
 }
