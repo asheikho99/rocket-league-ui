@@ -14,6 +14,7 @@ export const enum Game {
     STATFEED_EVENT = "game:statfeed_event",
     UPDATE_STATE = "game:update_state",
     VERSION = "sos:version",
+    CLOCK_STARTED = "game:clock_started",
     CLOCK_UPDATED_SECONDS = "game:clock_updated_seconds",
     CLOCK_STOPPED = "game:clock_stopped",
     ROUND_STARTED_GO = 'game:round_started_go',
