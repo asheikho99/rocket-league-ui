@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import type { Player } from "../types";
 
-export const gameTime = writable<number>(0)
+export const matchTime = writable<number>(0)
 export const hasGame = writable<boolean>(false)
 export const hasTarget = writable<boolean>(false)
 export const hasWinner = writable<boolean>(false)
