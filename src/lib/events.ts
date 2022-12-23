@@ -1,7 +1,6 @@
-import type { FeedEvent, Payload, PayloadData } from '../types'
-import { Event } from '../enums/Event'
+import type { BallHit, FeedEvent, Payload, UpdateState } from '../types'
+import { Game } from '../enums/Game'
 import { onReplay } from '../events/onReplay'
-import { onTeams } from '../events/onTeams'
 import { onFeedEvent } from '../events/onFeedEvent'
 import { onGoalScored } from '../events/onGoalScored'
 import { onMatchDestroyed } from '../events/onMatchDestoryed'
@@ -10,52 +9,93 @@ import { onPodiumStart } from '../events/onPodiumStart'
 import { onUpdateState } from '../events/onUpdateState'
 import { onMatchInitialzed } from '../events/onMatchInitialized'
 import { onMatchCreated } from '../events/onMatchCreated'
+import { onSosVersion } from '../events/onSosVersion'
+import { onBallHit } from '../events/onBallHit'
+import { onPreCoundownBegin } from '../events/onPreCountdownBegin'
+import { onPostCountdownBegin } from '../events/onPostCountdownBegin'
+import { onRoundStartedGo } from '../events/onRoundStartedGo'
+import { onClockStarted } from '../events/onClockStarted'
+import { onClockStopped } from '../events/onClockStopped'
+import { onClockUpdatedSeconds } from '../events/onClockUpdatedSeconds'
 
 export const EventProcessor = (messageEvent: Payload) => {
+
   const event: string = messageEvent?.event
-  const data: PayloadData | FeedEvent = messageEvent?.data
+  const data: UpdateState | FeedEvent | BallHit | string = messageEvent?.data
 
   switch (event) {
-    case Event.MATCH_CREATED:
-      onMatchCreated()
+    case Game.VERSION:
+      onSosVersion(data as string)
       break
 
-    case Event.MATCH_INITIALIZED:
-      onMatchInitialzed()
+    case Game.MATCH_CREATED:
+      onMatchCreated(event)
       break
 
-    case Event.UPDATE_STATE:
-      onUpdateState(data?.game)
-      onTeams(data?.game?.teams)
+    case Game.MATCH_INITIALIZED:
+      onMatchInitialzed(event)
       break
 
-    case Event.STATFEED_EVENT:
-      onFeedEvent(data as unknown as FeedEvent)
+    case Game.PRE_COUNTDOWN_BEGIN:
+      onPreCoundownBegin()
       break
 
-    case Event.GOAL_SCORED:
-      onGoalScored()
+    case Game.POST_COUNTDOWN_BEGIN:
+      onPostCountdownBegin()
       break
 
-    case Event.REPLAY_START:
-    case Event.REPLAY_WILL_END:
-    case Event.REPLAY_END:
+    case Game.ROUND_STARTED_GO:
+      onRoundStartedGo()
+      break
+
+    case Game.CLOCK_STARTED:
+      onClockStarted()
+      break
+
+    case Game.CLOCK_STOPPED:
+      onClockStopped()
+      break
+
+    case Game.CLOCK_UPDATED_SECONDS:
+      onClockUpdatedSeconds()
+      break
+
+    case Game.UPDATE_STATE:
+      onUpdateState((data as UpdateState))
+      break
+
+    case Game.STATFEED_EVENT:
+      onFeedEvent((data as FeedEvent))
+      break
+
+    case Game.BALL_HIT:
+      onBallHit(data as BallHit)
+      break
+
+    case Game.GOAL_SCORED:
+      onGoalScored(event)
+      break
+
+    case Game.REPLAY_START:
+    case Game.REPLAY_WILL_END:
+    case Game.REPLAY_END:
       onReplay(event)
       break
 
-    case Event.PODIUM_START:
-      onPodiumStart()
+    case Game.PODIUM_START:
+      onPodiumStart(event)
       break
 
-    case Event.MATCH_DESTROYED:
-      onMatchEnded()
+    case Game.MATCH_ENDED:
+      onMatchEnded(event)
       break
 
-    case Event.MATCH_DESTROYED:
-      onMatchDestroyed()
+    case Game.MATCH_DESTROYED:
+      onMatchDestroyed(event)
       break
 
     default:
-      return
+      console.log(event)
   }
 }
+

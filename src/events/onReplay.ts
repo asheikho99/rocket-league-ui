@@ -1,20 +1,25 @@
-import { Event } from '../enums/Event'
-import { replayStatus, isReplay } from '../stores/replay'
+import { Game } from '../enums/Game'
+import { isReplay, isReplayEnd, isReplayWillEnd } from '../stores/replay'
 
-export const onReplay = (event: Event.REPLAY_START | Event.REPLAY_WILL_END | Event.REPLAY_END) => {
-    
-    if(!event) return
-    replayStatus.set(event)
+export const onReplay = (event: Game.REPLAY_START | Game.REPLAY_WILL_END | Game.REPLAY_END) => {
+    if (!event) return
 
     switch (event) {
-        case Event.REPLAY_START:
+        case Game.REPLAY_START:
+            isReplayEnd.set(false)
             isReplay.set(true)
             break
-        case Event.REPLAY_WILL_END:
+
+        case Game.REPLAY_WILL_END:
+            isReplayWillEnd.set(true)
             break
-        case Event.REPLAY_END:
+
+        case Game.REPLAY_END:
             isReplay.set(false)
+            isReplayWillEnd.set(false)
+            isReplayEnd.set(true)
             break
+
         default:
             return
     }

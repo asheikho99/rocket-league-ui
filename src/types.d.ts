@@ -1,13 +1,13 @@
 export type Payload = {
     data: PayloadData
-    event: Events
+    event: string
 }
 
-export type PayloadData = {
+export type UpdateState = {
     event: string
     game: Game
     hasGame: boolean
-    match_guid: string
+    matchGuid: string
     players: Player[]
 }
 
@@ -21,7 +21,7 @@ export type FeedEvent = {
 
 export type BallHit = {
     ball: Ball
-    match_guid: string
+    matchGuid: string
     player: Player
     location: Location
     speed: number
