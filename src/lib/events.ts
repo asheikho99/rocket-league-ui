@@ -10,12 +10,16 @@ import { onPodiumStart } from '../events/onPodiumStart'
 import { onUpdateState } from '../events/onUpdateState'
 import { onMatchInitialzed } from '../events/onMatchInitialized'
 import { onMatchCreated } from '../events/onMatchCreated'
+import { onSosVersion } from '../events/onSosVersion'
 
 export const EventProcessor = (messageEvent: Payload) => {
   const event: string = messageEvent?.event
-  const data: UpdateState | FeedEvent = messageEvent?.data
-
+  const data: UpdateState | FeedEvent | string = messageEvent?.data
   switch (event) {
+    case Event.VERSION:
+      onSosVersion(data as string)
+      break
+
     case Event.MATCH_CREATED:
       onMatchCreated(event)
       break
