@@ -1,9 +1,12 @@
-import type { UpdateState } from "../types"
-import { matchTime, isOT, players } from "../stores/game"
+import type { Player, UpdateState } from "../types"
+import { matchTime, isOT, players, target, hasTarget } from "../stores/game"
 import { teams } from "../stores/team"
 import { onSetPlayers } from "./onSetPlayers"
+import { get } from "svelte/store"
+import { onSetTarget } from "./onSetTarget"
 
 export const onUpdateState = (updateState: UpdateState) => {
+
     matchTime.set(updateState?.game.time_seconds)
     isOT.set(updateState?.game?.isOT)
     players.set(Object.values(updateState?.players))
@@ -11,7 +14,7 @@ export const onUpdateState = (updateState: UpdateState) => {
 
     // TriggerEvent: Sets players on each team
     onSetPlayers()
+
+    hasTarget.set(updateState?.game?.hasTarget)
+    onSetTarget({ target: updateState?.game?.target })
 }
-
-
-

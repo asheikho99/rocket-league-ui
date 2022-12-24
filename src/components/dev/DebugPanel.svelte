@@ -32,7 +32,7 @@
   <p>replayEnd: {$isReplayEnd}</p>
   <p>replayStatus: {$replayStatus}</p>
   <p>hasTarget: {$hasTarget}</p>
-  <p>target: {$target}</p>
+  <p>target: {JSON.stringify($target)}</p>
   <p>isPodium started {$isPodiumStart}</p>
   <p>isMatchEnded: {$isMatchEnded}</p>
   <p>isMatchDestroyed {$isMatchDestroyed}</p>
