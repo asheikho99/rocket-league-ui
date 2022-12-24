@@ -1,7 +1,7 @@
 <script>
   import { isPodiumStart } from './../../stores/game'
   import {
-    feedEvent,
+    latestFeedEvent,
     matchTime,
     hasTarget,
     isFeedEventStarted,
@@ -37,5 +37,5 @@
   <p>isMatchEnded: {$isMatchEnded}</p>
   <p>isMatchDestroyed {$isMatchDestroyed}</p>
   <p>isFeedEventStarted: {$isFeedEventStarted}</p>
-  <p>Latest Feed Event: {$feedEvent}</p>
+  <p>Latest Feed Event: {JSON.stringify($latestFeedEvent)}</p>
 </div>

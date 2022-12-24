@@ -1,4 +1,4 @@
-import { hasTarget, isFeedEventStarted, isMatchCreated, isMatchDestroyed, isMatchEnded, isMatchInitialized, isOT, isPodiumStart, matchTime, target } from "../stores/game"
+import { hasTarget, isFeedEventStarted, isMatchCreated, isMatchDestroyed, isMatchEnded, isMatchInitialized, isOT, isPodiumStart, latestFeedEvent, matchTime, target } from "../stores/game"
 import type { Game } from '../enums/Game'
 import { isReplay, isReplayEnd, isReplayWillEnd, replayStatus } from "../stores/replay"
 import { isPostCountdownBegin, isPreCountdownBegin } from "../stores/countdown"
@@ -28,4 +28,5 @@ export const onMatchDestroyed = (event: Game.MATCH_DESTROYED) => {
     isClockStopped.set(false)
     replayStatus.set('')
     target.set('')
+    latestFeedEvent.set('')
 }
