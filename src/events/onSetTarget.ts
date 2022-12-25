@@ -5,7 +5,9 @@ export const onSetTarget = ({ target }: { target: string }) => {
 
     if (get(hasTarget) && target != '') {
         get(players).find((player: Player) => {
-            targetStore.set(player)
+            if((target) == player?.id) {
+                targetStore.set(player)
+            }
         })
     } else {
         targetStore.set('')
