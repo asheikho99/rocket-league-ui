@@ -5,6 +5,7 @@ import type { Payload } from '../types';
 import { onNameplateTick } from 'events/on-nameplate-tick';
 import { onClockUpdatedSeconds } from 'events/on-clock-updated-seconds';
 import { onBallHit } from 'events/on-ball-hit';
+import { onUpdateState } from 'events/on-update-state';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -26,6 +27,9 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 					break;
 				case Game.BALL_HIT:
 					onBallHit(data);
+					break;
+				case Game.UPDATE_STATE:
+					onUpdateState(data);
 					break;
 				default:
 					console.debug({ event, data });
