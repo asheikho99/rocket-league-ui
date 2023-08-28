@@ -4,6 +4,7 @@ import { onSosVersion } from 'events/on-sos-version';
 import type { Payload } from '../types';
 import { onNameplateTick } from 'events/on-nameplate-tick';
 import { onClockUpdatedSeconds } from 'events/on-clock-updated-seconds';
+import { onBallHit } from 'events/on-ball-hit';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -22,6 +23,9 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 					break;
 				case Game.CLOCK_UPDATED_SECONDS:
 					onClockUpdatedSeconds(data);
+					break;
+				case Game.BALL_HIT:
+					onBallHit(data);
 					break;
 				default:
 					console.debug({ event, data });
