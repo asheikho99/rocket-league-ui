@@ -6,6 +6,7 @@ import { onNameplateTick } from 'events/on-nameplate-tick';
 import { onClockUpdatedSeconds } from 'events/on-clock-updated-seconds';
 import { onBallHit } from 'events/on-ball-hit';
 import { onUpdateState } from 'events/on-update-state';
+import { onReplay } from 'events/on-replay';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -30,6 +31,11 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 					break;
 				case Game.UPDATE_STATE:
 					onUpdateState(data);
+					break;
+				case Game.REPLAY_START:
+				case Game.REPLAY_WILL_END:
+				case Game.REPLAY_END:
+					onReplay(event);
 					break;
 				default:
 					console.debug({ event, data });
