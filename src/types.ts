@@ -20,3 +20,7 @@ type Position = {
 	x: number;
 	y: number;
 };
+
+export type ClockUpdatedSeconds = {
+	match_guid: string;
+};

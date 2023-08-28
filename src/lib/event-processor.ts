@@ -3,6 +3,7 @@ import { SOS } from 'enums/sos';
 import { onSosVersion } from 'events/on-sos-version';
 import type { Payload } from '../types';
 import { onNameplateTick } from 'events/on-nameplate-tick';
+import { onClockUpdatedSeconds } from 'events/on-clock-updated-seconds';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -19,9 +20,11 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 				case Game.NAMEPLATE_TICK:
 					onNameplateTick(data);
 					break;
-
+				case Game.CLOCK_UPDATED_SECONDS:
+					onClockUpdatedSeconds(data);
+					break;
 				default:
-					console.debug('UNKNOWN EVENT', event);
+					console.debug({ event, data });
 			}
 		};
 	}
