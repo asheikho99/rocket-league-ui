@@ -39,6 +39,7 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 					onReplay(event);
 					break;
 				case Game.MATCH_CREATED:
+				case Game.MATCH_ENDED:
 				case Game.MATCH_DESTROYED:
 					onMatch(event);
 					break;

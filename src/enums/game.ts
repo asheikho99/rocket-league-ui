@@ -7,5 +7,6 @@ export const enum Game {
 	REPLAY_WILL_END = 'game:replay_will_end',
 	REPLAY_END = 'game:replay_end',
 	MATCH_CREATED = 'game:match_created',
+	MATCH_ENDED = 'game:match_ended',
 	MATCH_DESTROYED = 'game:match_destroyed',
 }
