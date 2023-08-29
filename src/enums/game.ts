@@ -9,4 +9,5 @@ export const enum Game {
 	MATCH_CREATED = 'game:match_created',
 	MATCH_ENDED = 'game:match_ended',
 	MATCH_DESTROYED = 'game:match_destroyed',
+	GOAL_SCORED = 'game:goal_scored',
 }

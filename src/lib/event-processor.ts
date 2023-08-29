@@ -8,6 +8,7 @@ import { onBallHit } from 'events/on-ball-hit';
 import { onUpdateState } from 'events/on-update-state';
 import { onReplay } from 'events/on-replay';
 import { onMatch } from 'events/on-match';
+import { onGoalScored } from 'events/on-goal-scored';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -42,6 +43,9 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 				case Game.MATCH_ENDED:
 				case Game.MATCH_DESTROYED:
 					onMatch(event);
+					break;
+				case Game.GOAL_SCORED:
+					onGoalScored(data);
 					break;
 				default:
 					console.debug({ event, data });
