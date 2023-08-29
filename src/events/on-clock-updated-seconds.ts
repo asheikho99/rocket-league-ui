@@ -1,5 +1,8 @@
-import type { ClockUpdatedSeconds } from '../types';
 
-export const onClockUpdatedSeconds = (event: ClockUpdatedSeconds) => {
+export interface ClockUpdatedSecondsEvent {
+	match_guid: string;
+};
+
+export const onClockUpdatedSeconds = (event: ClockUpdatedSecondsEvent) => {
 	// Nothing implemented
 };

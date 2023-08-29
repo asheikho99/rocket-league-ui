@@ -1,9 +1,13 @@
 import { readonly, writable } from 'svelte/store';
 
-const sosVersionWritableStore = writable<{ version: string }>({ version: '' });
+export interface SosVersionEvent {
+	version: string;
+}
 
-export const onSosVersion = (sosVersion: string) => {
-	sosVersionWritableStore.set({ version: sosVersion });
+const sosVersionWritableStore = writable<SosVersionEvent>({} as SosVersionEvent);
+
+export const onSosVersion = (sosVersion: SosVersionEvent) => {
+	sosVersionWritableStore.set({ version: sosVersion.version });
 };
 
 export const sosVersionStore = readonly(sosVersionWritableStore);

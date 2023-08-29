@@ -1,9 +1,26 @@
 import { readonly, writable } from 'svelte/store';
-import type { NameplateTick } from '../types';
 
-const nameplateTickWritableStore = writable<NameplateTick>({} as NameplateTick);
+export interface NameplateTickEvent {
+	match_guid: string;
+	nameplates: {
+		ball: Ball;
+	};
+}
 
-export const onNameplateTick = (event: NameplateTick) => {
+interface Ball {
+	isvisible: boolean;
+	position: Position;
+}
+
+interface Position {
+	depth: number;
+	x: number;
+	y: number;
+}
+
+const nameplateTickWritableStore = writable<NameplateTickEvent>({} as NameplateTickEvent);
+
+export const onNameplateTick = (event: NameplateTickEvent) => {
 	nameplateTickWritableStore.set({
 		match_guid: event.match_guid,
 		nameplates: event.nameplates
