@@ -90,4 +90,4 @@ export const onUpdateState = (event: UpdateStateEvent) => {
 	});
 };
 
-export const UpdateStateStore = readonly(updateStateWritableStore);
+export const updateStateStore = readonly(updateStateWritableStore);
