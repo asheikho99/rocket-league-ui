@@ -19,6 +19,7 @@ export const createWsConnection = () => {
 			isConnected: true,
 			isDebug: false
 		});
+		console.log(`Websocket connection initiated`)
 	} catch (err) {
 		console.error(err);
 	}
@@ -33,6 +34,7 @@ export const destoryWsConnection = () => {
 			websocket: undefined,
 			isConnected: false
 		});
+		console.log(`Websocket connection destroyed`)
 	} catch (err) {
 		console.error(err);
 	}
