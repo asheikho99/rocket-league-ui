@@ -1,5 +1,6 @@
 import { Game } from 'enums/game';
 import { readonly, writable } from 'svelte/store';
+import { isPodiumWritableStore } from './on-podium';
 
 export interface MatchEvent {
 	status: 'CREATED' | 'ENDED' | 'DESTROYED';
@@ -11,18 +12,20 @@ export const onMatch = (event: string) => {
 	switch (event) {
 		case Game.MATCH_CREATED:
 			matchWritableStore.set({
-				status: 'CREATED'
+				status: 'CREATED',
 			});
+			isPodiumWritableStore.set(false);
 			break;
 		case Game.MATCH_ENDED:
 			matchWritableStore.set({
-				status: 'ENDED'
+				status: 'ENDED',
 			});
 			break;
 		case Game.MATCH_DESTROYED:
 			matchWritableStore.set({
-				status: 'DESTROYED'
+				status: 'DESTROYED',
 			});
+			isPodiumWritableStore.set(false);
 			break;
 		default:
 			console.debug(`UNKNOWN MATCH STATE`, event);
