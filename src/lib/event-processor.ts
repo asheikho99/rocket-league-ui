@@ -35,6 +35,7 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 				case Game.UPDATE_STATE:
 					onUpdateState(data);
 					break;
+				case Game.REPLAY_CREATED:
 				case Game.REPLAY_START:
 				case Game.REPLAY_WILL_END:
 				case Game.REPLAY_END:

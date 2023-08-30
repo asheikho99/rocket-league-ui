@@ -3,6 +3,7 @@ export const enum Game {
 	CLOCK_UPDATED_SECONDS = 'game:clock_updated_seconds',
 	BALL_HIT = 'game:ball_hit',
 	UPDATE_STATE = 'game:update_state',
+	REPLAY_CREATED = 'game:replay_created',
 	REPLAY_START = 'game:replay_start',
 	REPLAY_WILL_END = 'game:replay_will_end',
 	REPLAY_END = 'game:replay_end',
