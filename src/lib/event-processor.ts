@@ -12,6 +12,7 @@ import { onStatFeed } from 'events/on-stat-feed';
 import { onGoalScored } from 'events/on-goal-scored';
 import { onPodium } from 'events/on-podium';
 import { onRoundState } from 'events/on-round-state';
+import { onClockState } from 'events/on-clock-state';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -27,6 +28,10 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 					break;
 				case Game.NAMEPLATE_TICK:
 					onNameplateTick(data);
+					break;
+				case Game.CLOCK_STARTED:
+				case Game.CLOCK_STOPPED:
+					onClockState(event);
 					break;
 				case Game.CLOCK_UPDATED_SECONDS:
 					onClockUpdatedSeconds(data);

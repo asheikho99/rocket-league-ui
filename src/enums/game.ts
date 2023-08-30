@@ -1,5 +1,7 @@
 export const enum Game {
 	NAMEPLATE_TICK = 'game:nameplate_tick',
+	CLOCK_STARTED = 'game:clock_started',
+	CLOCK_STOPPED = 'game:clock_stopped',
 	CLOCK_UPDATED_SECONDS = 'game:clock_updated_seconds',
 	BALL_HIT = 'game:ball_hit',
 	UPDATE_STATE = 'game:update_state',
