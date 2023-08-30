@@ -11,6 +11,7 @@ import { onMatch } from 'events/on-match';
 import { onStatFeed } from 'events/on-stat-feed';
 import { onGoalScored } from 'events/on-goal-scored';
 import { onPodium } from 'events/on-podium';
+import { onRoundState } from 'events/on-round-state';
 
 export const eventProcessor = (websocket: WebSocket | undefined) => {
 	if (websocket) {
@@ -41,6 +42,12 @@ export const eventProcessor = (websocket: WebSocket | undefined) => {
 				case Game.REPLAY_WILL_END:
 				case Game.REPLAY_END:
 					onReplay(event);
+					break;
+				case Game.INITIALIZED:
+				case Game.PRE_COUNTDOWN_BEGIN:
+				case Game.POST_COUNTDOWN_BEGIN:
+				case Game.ROUNDED_STARTED_GO:
+					onRoundState(event);
 					break;
 				case Game.MATCH_CREATED:
 				case Game.MATCH_ENDED:

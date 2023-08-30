@@ -13,4 +13,8 @@ export const enum Game {
 	PODIUM_START = 'game:podium_start',
 	STAT_FEED = 'game:statfeed_event',
 	GOAL_SCORED = 'game:goal_scored',
+	INITIALIZED = 'game:initialized',
+	PRE_COUNTDOWN_BEGIN = 'game:pre_countdown_begin',
+	POST_COUNTDOWN_BEGIN = 'game:post_countdown_begin',
+	ROUNDED_STARTED_GO = 'game:round_started_go',
 }
