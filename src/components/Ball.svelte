@@ -1,25 +1,23 @@
 <script lang="ts">
 	import { updateStateStore } from './../events/on-update-state';
+	import Collapsible from './Collapsible.svelte';
 	$: BALL = $updateStateStore.game.ball;
 </script>
 
 <div class="flex flex-col space-y-4">
-	<div class="flex flex-col">
-		<p class="font-semibold text-lg">Location</p>
-		<div class="flex flex-col space-y-2">
+	<Collapsible title="Location">
+		<div class={`flex flex-col space-y-2`}>
 			<p>X: {BALL.location.X}</p>
 			<p>Y: {BALL.location.Y}</p>
 			<p>Z: {BALL.location.Z}</p>
 		</div>
-	</div>
+	</Collapsible>
 
-	<div class="flex flex-col">
-		<p class="font-semibold text-lg">Last Hit</p>
+	<Collapsible title="Last Hit">
 		<p>{BALL.team == 0 ? 'Blue Team' : 'Orange'}</p>
-	</div>
+	</Collapsible>
 
-	<div class="flex flex-col">
-		<p class="font-semibold text-lg">Speed</p>
+	<Collapsible title="Speed">
 		<p>{BALL.speed}</p>
-	</div>
+	</Collapsible>
 </div>
