@@ -14,7 +14,11 @@
 	</Collapsible>
 
 	<Collapsible title="Last Hit">
-		<p>{BALL.team == 0 ? 'Blue Team' : 'Orange'}</p>
+		{#if BALL.team != 255}
+			<p>{BALL.team == 0 ? 'Blue Team' : 'Orange'}</p>
+		{:else}
+			<p>None</p>
+		{/if}
 	</Collapsible>
 
 	<Collapsible title="Speed">
