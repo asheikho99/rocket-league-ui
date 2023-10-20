@@ -1,6 +1,7 @@
 import { Game } from 'enums/game';
 import { readonly, writable } from 'svelte/store';
 import { isPodiumWritableStore } from './on-podium';
+import { websocketHasGame } from '$lib/shared/stores';
 
 export interface MatchEvent {
 	status: 'CREATED' | 'ENDED' | 'DESTROYED';
@@ -26,6 +27,7 @@ export const onMatch = (event: string) => {
 				status: 'DESTROYED',
 			});
 			isPodiumWritableStore.set(false);
+			websocketHasGame.set(false);
 			break;
 		default:
 			console.debug(`UNKNOWN MATCH STATE`, event);

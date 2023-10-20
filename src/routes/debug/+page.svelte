@@ -6,6 +6,7 @@
 	import { createWsConnection, destoryWsConnection, wsStore } from '$lib/websocket';
 	import { eventProcessor } from '$lib/event-processor';
 	import Game from 'components/Game.svelte';
+	import { websocketHasGame } from '$lib/shared/stores';
 
 	const tabs = [
 		{ title: 'Game', content: 'Game' },
@@ -38,18 +39,21 @@
 	{#each tabs as tab, index}
 		<button
 			tabindex={index}
-			class={`hover:cursor-pointer py-2 font-semibold min-w-[100px] hover:text-black ${
-				selectedTab == index ? 'text-black border-b-black border-b-2' : 'text-gray-600'
+			class={`disabled:cursor-not-allowed disabled:text-gray-400 hover:cursor-pointer py-2 font-semibold min-w-[100px] hover:text-black ${
+				selectedTab == index ? 'text-black border-b-black border-b-2 disabled:border-none' : 'text-gray-600'
 			}`}
 			on:click={() => {
 				selectedTab = index;
 			}}
+			disabled={!$websocketHasGame}
 		>
 			{tab.title}
 		</button>
 	{/each}
 </div>
 
-<div class="flex flex-col p-4">
-	<svelte:component this={components[tabs[selectedTab].content]} />
-</div>
+{#if $websocketHasGame}
+	<div class="flex flex-col p-4">
+		<svelte:component this={components[tabs[selectedTab].content]} />
+	</div>
+{/if}
