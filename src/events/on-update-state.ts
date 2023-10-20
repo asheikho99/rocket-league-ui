@@ -1,4 +1,4 @@
-import { websocketHasGame } from '$lib/shared/stores';
+import { websocketHasGame, websocketReplay } from '$lib/shared/stores';
 import { readonly, writable } from 'svelte/store';
 
 export interface UpdateStateEvent {
@@ -87,10 +87,11 @@ export const onUpdateState = (event: UpdateStateEvent) => {
 		game: event.game,
 		hasGame: event.hasGame,
 		match_guid: event.match_guid,
-		players: event.players
+		players: event.players,
 	});
-	
+
 	websocketHasGame.set(true);
+	websocketReplay.set(event.game.isReplay);
 };
 
 export const updateStateStore = readonly(updateStateWritableStore);
