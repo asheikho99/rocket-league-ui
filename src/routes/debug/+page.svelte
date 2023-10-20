@@ -7,10 +7,12 @@
 	import { eventProcessor } from '$lib/event-processor';
 	import Game from 'components/Game.svelte';
 	import Replay from 'components/Replay.svelte';
+	import StatFeed from 'components/StatFeed.svelte';
 	import { websocketHasGame } from '$lib/shared/stores';
 
 	const tabs = [
 		{ title: 'Game', content: 'Game' },
+		{ title: 'StatFeed', content: 'StatFeed' },
 		{ title: 'Players', content: 'Players' },
 		{ title: 'Replay', content: 'Replay' },
 		{ title: 'Ball', content: 'Ball' },
@@ -18,9 +20,16 @@
 	];
 
 	const components: {
-		[key: string]: typeof Game | typeof Players | typeof Replay | typeof Ball | typeof Settings;
+		[key: string]:
+			| typeof Game
+			| typeof StatFeed
+			| typeof Players
+			| typeof Replay
+			| typeof Ball
+			| typeof Settings;
 	} = {
 		Game,
+		StatFeed,
 		Players,
 		Replay,
 		Ball,

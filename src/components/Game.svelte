@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { updateStateStore } from 'events/on-update-state';
 	import Collapsible from './Collapsible.svelte';
+	import { getFormattedTime } from '$lib/utils';
 
 	$: GAME = $updateStateStore.game;
 </script>
@@ -23,11 +24,7 @@
 <Collapsible title="Time">
 	<div class="flex flex-row">
 		<span
-			>{`${Math.floor((GAME.time_seconds % 3600) / 60)
-				.toString()
-				.padStart(2, '0')}:${Math.floor(GAME.time_seconds % 60)
-				.toString()
-				.padStart(2, '0')}`}
+			>{getFormattedTime(GAME.time_seconds)}
 		</span>
 	</div>
 </Collapsible>

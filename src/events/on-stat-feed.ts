@@ -1,5 +1,8 @@
+import { pastStatfeedEventsStore } from '$lib/shared/stores';
+import { getFormattedTime } from '$lib/utils';
 import { StatFeed } from 'enums/stat-feed';
-import { readonly, writable } from 'svelte/store';
+import { get, readonly, writable } from 'svelte/store';
+import { updateStateStore } from './on-update-state';
 
 export interface StatFeedEvent {
 	event_name: string;
@@ -57,6 +60,18 @@ export const onStatFeed = (event: StatFeedEvent) => {
 				match_guid: event.match_guid,
 				secondary_target: event.secondary_target,
 				type: event.type,
+			});
+
+			pastStatfeedEventsStore.update((values) => {
+				values.push({
+					event_name: event.event_name,
+					main_target: event.main_target,
+					match_guid: event.match_guid,
+					secondary_target: event.secondary_target,
+					type: event.type,
+					event_time: getFormattedTime(get(updateStateStore).game.time_seconds),
+				});
+				return values;
 			});
 			break;
 		default:
