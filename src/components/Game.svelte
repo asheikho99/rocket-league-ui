@@ -9,6 +9,17 @@
 	{GAME.arena}
 </Collapsible>
 
+<Collapsible title="Score">
+	<div class="grid grid-cols-2 grid-rows-2">
+		{#each GAME.teams as team (team.name)}
+			<div class="row">
+				<div class="col font-semibold">{team.name}</div>
+				<div class="col">{team.score}</div>
+			</div>
+		{/each}
+	</div>
+</Collapsible>
+
 <Collapsible title="Time">
 	<div class="flex flex-row">
 		<span
