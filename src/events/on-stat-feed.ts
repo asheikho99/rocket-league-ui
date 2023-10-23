@@ -28,7 +28,6 @@ export const onStatFeed = (event: StatFeedEvent) => {
 		case StatFeed.BACKWARDS_GOAL:
 		case StatFeed.BICYCLE_GOAL:
 		case StatFeed.BICYCLE_HIT:
-		case StatFeed.BULLET_HIT:
 		case StatFeed.CENTER_BALL:
 		case StatFeed.CLEAR_BALL:
 		case StatFeed.DAMAGE:
@@ -48,7 +47,6 @@ export const onStatFeed = (event: StatFeedEvent) => {
 		case StatFeed.POOL_SHOT:
 		case StatFeed.SAVE:
 		case StatFeed.SAVIOR:
-		case StatFeed.SHOT:
 		case StatFeed.SHOT_ON_GOAL:
 		case StatFeed.SWISH_GOAL:
 		case StatFeed.TUTRLE_GOAL:
