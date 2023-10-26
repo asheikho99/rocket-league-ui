@@ -84,8 +84,6 @@ const updateStateWritableStore = writable<UpdateStateEvent>({} as UpdateStateEve
 
 export const onUpdateState = (event: UpdateStateEvent) => {
 
-	console.log(event)
-
 	updateStateWritableStore.set({
 		event: event.event,
 		game: event.game,
