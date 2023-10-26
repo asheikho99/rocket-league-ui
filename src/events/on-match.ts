@@ -1,7 +1,7 @@
 import { Game } from 'enums/game';
 import { readonly, writable } from 'svelte/store';
 import { isPodiumWritableStore } from './on-podium';
-import { pastStatfeedEventsStore, websocketHasGame } from '$lib/shared/stores';
+import { pastStatfeedEventsStore, websocketHasGame } from '$lib/stores';
 import type { StatFeedEvent } from './on-stat-feed';
 
 export interface MatchEvent {

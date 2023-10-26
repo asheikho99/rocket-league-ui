@@ -1,4 +1,4 @@
-import { websocketHasGame, websocketReplay } from '$lib/shared/stores';
+import { websocketHasGame, websocketReplay } from '$lib/stores';
 import { readonly, writable } from 'svelte/store';
 
 export interface UpdateStateEvent {
@@ -42,7 +42,7 @@ interface Team {
 	score: number;
 }
 
-interface Player {
+export interface Player {
 	assists: number;
 	attacker: string;
 	boost: number;
@@ -66,6 +66,7 @@ interface Player {
 	speed: number;
 	team: number;
 	touches: number;
+	[key: string]: number | string | boolean | PlayerLocation; // index signature
 }
 
 interface PlayerLocation {
@@ -82,6 +83,9 @@ type Players = Record<string, Player>;
 const updateStateWritableStore = writable<UpdateStateEvent>({} as UpdateStateEvent);
 
 export const onUpdateState = (event: UpdateStateEvent) => {
+
+	console.log(event)
+
 	updateStateWritableStore.set({
 		event: event.event,
 		game: event.game,

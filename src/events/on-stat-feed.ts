@@ -1,4 +1,4 @@
-import { pastStatfeedEventsStore } from '$lib/shared/stores';
+import { pastStatfeedEventsStore, playerStatEventStore, recentStatFeedStore } from '$lib/stores';
 import { getFormattedTime } from '$lib/utils';
 import { StatFeed } from 'enums/stat-feed';
 import { get, readonly, writable } from 'svelte/store';
@@ -12,7 +12,7 @@ export interface StatFeedEvent {
 	type: string;
 }
 
-interface Target {
+export interface Target {
 	id: string;
 	name: string;
 	team_num: number;
@@ -60,7 +60,21 @@ export const onStatFeed = (event: StatFeedEvent) => {
 				type: event.type,
 			});
 
+			// Debugger store
 			pastStatfeedEventsStore.update((values) => {
+				values.push({
+					event_name: event.event_name,
+					main_target: event.main_target,
+					match_guid: event.match_guid,
+					secondary_target: event.secondary_target,
+					type: event.type,
+					event_time: getFormattedTime(get(updateStateStore).game.time_seconds),
+				});
+				return values;
+			});
+
+			// Overlay store
+			recentStatFeedStore.update((values) => {
 				values.push({
 					event_name: event.event_name,
 					main_target: event.main_target,
