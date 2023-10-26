@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { websocketHasGame } from '$lib/shared/stores';
+	import { websocketHasGame } from '$lib/stores';
 </script>
 
 {#if !$websocketHasGame}
