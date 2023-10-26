@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { updateStateStore } from './../events/on-update-state';
+	import { updateStateStore } from '../../events/on-update-state';
 	import Collapsible from './Collapsible.svelte';
 	$: BALL = $updateStateStore.game.ball;
 </script>

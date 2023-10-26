@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Collapsible from './Collapsible.svelte';
-	import { pastStatfeedEventsStore } from '$lib/shared/stores';
+	import { pastStatfeedEventsStore } from '$lib/stores';
 </script>
 
 {#each $pastStatfeedEventsStore as event}

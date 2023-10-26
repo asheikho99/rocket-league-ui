@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { websocketReplay } from '$lib/shared/stores';
+	import { websocketReplay } from '$lib/stores';
 	import { replayStore } from 'events/on-replay';
 	$: REPLAY = $replayStore;
 </script>
