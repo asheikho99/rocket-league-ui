@@ -5,19 +5,21 @@ const config = {
 	theme: {
 		extend: {
 			colors: {
-				foreground: '#2c2b31',
-				'foreground-muted': '#181a21',
-				'foreground-dark': '#141b22',
-				'foreground-light': '#2c2a30',
+				'foreground-dark': '#17232f',
+				'foreground-light': '#eae0d6',
+				'foreground-accent': '#58ba95',
+				'foreground-decent': '#a6dfca',
 				'team-0': {
-					primary: '#0182c5',
-					secondary: '#185571',
-					charge: '#1085d1',
+					primary: '#2585bc',
+					secondary: '#2ea5c0',
+					accent: '#559dc2',
+					decent: '#77afc1',
 				},
 				'team-1': {
-					primary: '#f76d1f',
-					secondary: '#9f4829',
-					charge: '#f87a32',
+					primary: '#e26046',
+					secondary: '#f5733c',
+					accent: '#eca574',
+					decent: '#f3c098',
 				},
 			},
 			animation: {
@@ -25,8 +27,8 @@ const config = {
 			},
 			keyframes: (theme) => ({
 				fadeOut: {
-					'0%': {transform: 'scale(1)', opacity: '100%' },
-					'100%': {transform: 'scale(2)', opacity: '0%' },
+					'0%': { transform: 'scale(1)', opacity: '100%' },
+					'100%': { transform: 'scale(2)', opacity: '0%' },
 				},
 			}),
 		},
