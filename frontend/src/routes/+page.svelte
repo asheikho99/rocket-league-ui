@@ -13,7 +13,7 @@
 	});
 </script>
 
-<div class="min-h-screen bg-red-100">
+<div class="min-h-screen flex flex-col">
 	<Scoreboard />
 	<PlayersList />
 	<ActivePlayer />
