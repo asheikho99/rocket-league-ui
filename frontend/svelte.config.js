@@ -20,9 +20,9 @@ const config = {
 			strict: true,
 		}),
 		alias: {
-			enums: './src/enums',
-			events: './src/events',
-			components: './src/components',
+			'enums/*': './src/enums/*',
+			'events/*': './src/events/*',
+			'components/*': './src/components/*',
 		},
 	},
 };
