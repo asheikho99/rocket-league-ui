@@ -1,6 +1,6 @@
 # About this project
 
-This project is a typescript wrapper for bakkesmod rocket league SOS plugin using Svelte/Kit which enables you to create beautfull game overlay for your Twitch livebroad cast.
+This project is a typescript wrapper for Bakkesmod Rocket League [SOS Plugin](https://gitlab.com/bakkesplugins/sos/sos-plugin) using Svelte/Kit which enables you to create beautfull game overlay for your Twitch livebroad cast.
 
 # Features
 - Events processor to handle incoming game websocket packets
